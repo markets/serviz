@@ -1,23 +1,25 @@
-class Serviz
-  attr_accessor :errors, :result
+module Serviz
+  class Base
+    attr_accessor :errors, :result
 
-  def self.call(*args)
-    new(*args).call
-  end
+    def self.call(*args)
+      new(*args).call
+    end
 
-  def call
-    raise NotImplementedError
-  end
+    def call
+      raise NotImplementedError
+    end
 
-  def errors
-    @errors ||= []
-  end
+    def errors
+      @errors ||= []
+    end
 
-  def success?
-    !failure?
-  end
+    def success?
+      !failure?
+    end
 
-  def failure?
-    errors.any?
+    def failure?
+      errors.any?
+    end
   end
 end

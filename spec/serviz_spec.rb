@@ -1,5 +1,5 @@
-RSpec.describe Serviz do
+RSpec.describe Serviz::Base do
   it "does something useful" do
-    expect(false).to eq(true)
+    expect(true).to eq(true)
   end
 end

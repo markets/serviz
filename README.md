@@ -35,7 +35,7 @@ Or install it yourself as:
 Example:
 
 ```ruby
-class RegisterUser < Serviz
+class RegisterUser < Serviz::Base
   def initialize(user, app)
     @user = user
     @app = app
