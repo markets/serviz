@@ -26,13 +26,13 @@ Or install it yourself as:
 
 ## Usage
 
-- Inherit from `Serviz` class
+- Inherit from `Serviz::Base` class
 - Implement `#call` method:
-  - result `self.result =`
-  - errors `self.errors =`
-  - return `self`
+  - add results via `self.result=`
+  - add errors via `self.errors=`
+  - return `self` always
 
-Example:
+**Example:**
 
 ```ruby
 class RegisterUser < Serviz::Base
