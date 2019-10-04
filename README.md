@@ -2,7 +2,7 @@
 
 [![Gem](https://img.shields.io/gem/v/serviz.svg?style=flat-square)](https://rubygems.org/gems/serviz)
 [![Build Status](https://img.shields.io/travis/markets/serviz.svg?style=flat-square)](https://travis-ci.org/markets/serviz)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9d82e7151f8a5594da0f/maintainability)](https://codeclimate.com/github/markets/serviz/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/871bdafe6ca410b4b64a/maintainability)](https://codeclimate.com/github/markets/serviz/maintainability)
 
 > Minimalistic Service or Command Class interface for Ruby
 
@@ -74,4 +74,4 @@ To contribute, just fork the repo, hack on it and send a pull request. Don't for
 
 ## License
 
-Copyright (c) Marc Anguera. `Serviz is released under the [MIT](LICENSE) License.
+Copyright (c) Marc Anguera. `Serviz` is released under the [MIT](LICENSE) License.
