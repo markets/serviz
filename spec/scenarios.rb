@@ -13,3 +13,6 @@ class RegisterUser < Serviz::Base
     self
   end
 end
+
+class NoCall < Serviz::Base
+end

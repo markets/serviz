@@ -17,4 +17,8 @@ RSpec.describe Serviz::Base do
     expect(operation.errors).not_to be_empty
     expect(operation.result).to eq nil
   end
+
+  it "raises exception if #call is not defined" do
+    expect { NoCall.call }.to raise_error NotImplementedError
+  end
 end
