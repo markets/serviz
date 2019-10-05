@@ -3,7 +3,7 @@ require "./lib/serviz/version"
 Gem::Specification.new do |spec|
   spec.name          = "serviz"
   spec.version       = Serviz::VERSION
-  spec.summary       = "Minimalistic Service Class for Ruby"
+  spec.summary       = "Command object Interface for Ruby"
   spec.description   = spec.summary
   spec.authors       = ["markets"]
   spec.email         = ["srmarc.ai@gmail.com"]

@@ -4,9 +4,9 @@
 [![Build Status](https://img.shields.io/travis/markets/serviz.svg?style=flat-square)](https://travis-ci.org/markets/serviz)
 [![Maintainability](https://api.codeclimate.com/v1/badges/871bdafe6ca410b4b64a/maintainability)](https://codeclimate.com/github/markets/serviz/maintainability)
 
-> Minimalistic Service or Command Class interface for Ruby
+> Minimalistic Service Class Interface for Ruby
 
-`Serviz` provides an interface and to unify your Sevices or Command objects.
+`Serviz` provides a minimal interface to unify and homogenize your *Sevice* or *Command* objects in your Ruby code.
 
 ## Installation
 
@@ -26,8 +26,8 @@ Or install it yourself as:
 
 ## Usage
 
-- Inherit from `Serviz::Base` class
-- Implement `#call` method:
+- Your class should inherit from `Serviz::Base` class
+- Your class should implement `#call` method:
   - add results via `self.result=`
   - add errors via `self.errors=`
   - return `self` always
@@ -36,17 +36,18 @@ Or install it yourself as:
 
 ```ruby
 class RegisterUser < Serviz::Base
-  def initialize(user, app)
+  def initialize(user)
     @user = user
-    @app = app
   end
 
   def call
     if @user.valid?
-      @user.register!(@app)
-      self.result = user
+      @user.register
+      @user.send_register_email
+
+      self.result = @user
     else
-      self.errors = 'Invalid user'
+      self.errors << 'Invalid user'
     end
 
     self
@@ -55,18 +56,18 @@ end
 ```
 
 ```ruby
-service = RegisterUser.call(user, 'app01')
+operation = RegisterUser.call(user)
 
-if service.success?
-  puts "Success! #{service.result.name} registered!"
+if operation.success?
+  puts "[SUCCESS] #{operation.result.name} registered!"
 else
-  puts "Error! #{service.errors.join(', ')}"
+  puts "[ERROR] #{operation.errors.join(', ')}"
 end
 ```
 
 ## Development
 
-Any kind of feedback, bug report, idea or enhancement are much appreciated.
+Any kind of feedback, bug report or enhancement are really welcome!
 
 To contribute, just fork the repo, hack on it and send a pull request. Don't forget to add specs for behaviour changes and run the test suite:
 
