@@ -43,7 +43,7 @@ class RegisterUser < Serviz::Base
   def call
     if @user.valid?
       @user.register
-      @user.send_register_email
+      @user.send_notification
 
       self.result = @user
     else
