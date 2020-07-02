@@ -30,7 +30,6 @@ Or install it yourself as:
 - Your class should implement `#call` method:
   - add results via `self.result=`
   - add errors via `self.errors=`
-  - return `self` always
 
 **Example:**
 
@@ -49,8 +48,6 @@ class RegisterUser < Serviz::Base
     else
       self.errors << 'Invalid user'
     end
-
-    self
   end
 end
 ```

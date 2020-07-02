@@ -1,9 +1,14 @@
+require 'serviz/version'
+
 module Serviz
   class Base
     attr_accessor :errors, :result
 
     def self.call(*args)
-      new(*args).call
+      instance = new(*args)
+      instance.call
+
+      instance
     end
 
     def call

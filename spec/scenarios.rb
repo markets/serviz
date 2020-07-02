@@ -9,8 +9,6 @@ class RegisterUser < Serviz::Base
     else
       self.errors << 'No user!'
     end
-
-    self
   end
 end
 
