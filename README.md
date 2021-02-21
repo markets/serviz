@@ -1,7 +1,7 @@
 # Serviz
 
 [![Gem](https://img.shields.io/gem/v/serviz.svg?style=flat-square)](https://rubygems.org/gems/serviz)
-[![Build Status](https://github.com/markets/serviz/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/markets/serviz/actions)
+[![Build Status](https://github.com/markets/serviz/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/markets/serviz/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/871bdafe6ca410b4b64a/maintainability)](https://codeclimate.com/github/markets/serviz/maintainability)
 
 > Minimalistic Service Class Interface for Ruby
