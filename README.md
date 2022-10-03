@@ -28,8 +28,8 @@ Or install it yourself as:
 
 - Your class should inherit from `Serviz::Base` class
 - Your class should implement `#call` method:
-  - add results via `self.result=`
-  - add errors via `self.errors=`
+  - Add results via `self.result=`
+  - Add errors via `self.errors=`
 
 **Example:**
 
@@ -41,8 +41,7 @@ class RegisterUser < Serviz::Base
 
   def call
     if @user.valid?
-      @user.register
-      @user.send_notification
+      @user.register_and_notify
 
       self.result = @user
     else
@@ -59,6 +58,15 @@ if operation.success?
   puts "[SUCCESS] #{operation.result.name} registered!"
 else
   puts "[ERROR] #{operation.errors.join(', ')}"
+end
+```
+
+You can also use the `#failure?` method:
+
+```ruby
+if operation.failure?
+  puts "Error! Please try again ..."
+  return
 end
 ```
 
