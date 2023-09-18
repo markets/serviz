@@ -1,5 +1,4 @@
 require 'serviz/version'
-require 'byebug'
 
 module Serviz
   class Base
