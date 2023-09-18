@@ -12,5 +12,16 @@ class RegisterUser < Serviz::Base
   end
 end
 
+class PositionalAndKeyword < Serviz::Base
+  def initialize(positional, keyword:)
+    @positional = positional
+    @keyword    = keyword
+  end
+
+  def call
+    self.result = [@positional, @keyword]
+  end
+end
+
 class NoCall < Serviz::Base
 end

@@ -21,4 +21,11 @@ RSpec.describe Serviz::Base do
   it "raises exception if #call is not defined" do
     expect { NoCall.call }.to raise_error NotImplementedError
   end
+
+  it "accepts positional and keywords args" do
+    operation = PositionalAndKeyword.call('foo', keyword: 'bar')
+
+    expect(operation.success?).to eq true
+    expect(operation.result).to eq(['foo', 'bar'])
+  end
 end

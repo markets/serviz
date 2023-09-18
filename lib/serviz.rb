@@ -4,8 +4,8 @@ module Serviz
   class Base
     attr_accessor :errors, :result
 
-    def self.call(*args)
-      instance = new(*args)
+    def self.call(*, **)
+      instance = new(*, **)
       instance.call
 
       instance
