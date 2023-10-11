@@ -4,8 +4,14 @@ module Serviz
   class Base
     attr_accessor :errors, :result
 
-    def self.call(*args)
-      instance = new(*args)
+    def self.call(*args, **kwargs)
+      instance = if args.length > 0 && kwargs.length > 0
+                   new(*args, **kwargs)
+                 elsif kwargs.length > 0
+                   new(**kwargs)
+                 else
+                   new(*args)
+                 end
       instance.call
 
       instance
