@@ -6,7 +6,7 @@
 
 > Minimalistic Service Class Interface for Ruby
 
-`Serviz` provides a minimal interface to unify and homogenize your *Sevice* or *Command* objects in your Ruby code.
+`Serviz` provides a minimal interface to unify and homogenize your *Service* or *Command* objects in your Ruby code.
 
 ## Installation
 
