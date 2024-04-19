@@ -33,6 +33,8 @@ Or install it yourself as:
 
 **Example:**
 
+First, you should create a _Serviz_ class:
+
 ```ruby
 class RegisterUser < Serviz::Base
   def initialize(user)
@@ -51,6 +53,8 @@ class RegisterUser < Serviz::Base
 end
 ```
 
+Now, you can run it by using the `call` method:
+
 ```ruby
 operation = RegisterUser.call(user)
 
@@ -62,7 +66,9 @@ else
 end
 ```
 
-You can also use the `#failure?` method:
+As you can see in the example above, you can use the `success?` method to check if your operation succeed. You can also use the `ok?` alias.
+
+In case you want to check if the run failed, you can use the `#failure?` method (or the `error?` alias):
 
 ```ruby
 if operation.failure?
@@ -75,7 +81,7 @@ You may want to use the _block_ syntax:
 
 ```ruby
 RegisterUser.call do |operation|
-  if operation.success?
+  if operation.ok?
     puts 'Success!'
   end
 end

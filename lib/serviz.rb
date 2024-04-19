@@ -34,9 +34,11 @@ module Serviz
     def success?
       !failure?
     end
+    alias_method :ok?, :success?
 
     def failure?
       errors.any?
     end
+    alias_method :error?, :failure?
   end
 end
