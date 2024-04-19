@@ -57,7 +57,7 @@ operation = RegisterUser.call(user)
 if operation.success?
   puts "[SUCCESS] #{operation.result.name} registered!"
 else
-  puts "[ERROR] #{operation.errors.join(', ')}"
+  puts "[ERROR] #{operation.error_messages}"
 end
 ```
 

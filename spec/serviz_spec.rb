@@ -6,6 +6,7 @@ RSpec.describe Serviz::Base do
     expect(operation.success?).to eq true
     expect(operation.failure?).to eq false
     expect(operation.errors).to be_empty
+    expect(operation.error_messages).to eq ''
     expect(operation.result).to eq user
   end
 
@@ -15,6 +16,7 @@ RSpec.describe Serviz::Base do
     expect(operation.success?).to eq false
     expect(operation.failure?).to eq true
     expect(operation.errors).not_to be_empty
+    expect(operation.error_messages).to eq 'No user!'
     expect(operation.result).to eq nil
   end
 

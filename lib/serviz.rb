@@ -27,6 +27,10 @@ module Serviz
       @errors ||= []
     end
 
+    def error_messages(separator = ", ")
+      errors.join(separator)
+    end
+
     def success?
       !failure?
     end
