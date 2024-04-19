@@ -26,10 +26,10 @@ Or install it yourself as:
 
 ## Usage
 
-- Your class should inherit from `Serviz::Base` class
-- Your class should implement `#call` method:
-  - Add results via `self.result=`
-  - Add errors via `self.errors=`
+- Your class should inherit from `Serviz::Base`
+- Your class should implement a `#call` method
+- Return the _result_ via `self.result=`
+- Add _errors_ via `self.errors<<`
 
 **Example:**
 
@@ -55,9 +55,10 @@ end
 operation = RegisterUser.call(user)
 
 if operation.success?
-  puts "[SUCCESS] #{operation.result.name} registered!"
+  user = operation.result
+  puts "Success! #{user.name} registered!"
 else
-  puts "[ERROR] #{operation.error_messages}"
+  puts "Error! #{operation.error_messages}"
 end
 ```
 
