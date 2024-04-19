@@ -80,10 +80,8 @@ end
 You may want to use the _block_ syntax:
 
 ```ruby
-RegisterUser.call do |operation|
-  if operation.ok?
-    puts 'Success!'
-  end
+RegisterUser.call(user) do |operation|
+  puts "Success!" if operation.ok?
 end
 ```
 
