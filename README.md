@@ -68,7 +68,7 @@ end
 
 As you can see in the example above, you can use the `success?` method to check if your operation succeed. You can also use the `ok?` alias.
 
-In case you want to check if the run failed, you can use the `#failure?` method (or the `error?` alias):
+In case you want to check if the run failed, you can use the `failure?` method (or the alias `error?`):
 
 ```ruby
 if operation.failure?
