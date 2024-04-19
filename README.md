@@ -70,6 +70,16 @@ if operation.failure?
 end
 ```
 
+You may want to use the _block_ syntax:
+
+```ruby
+RegisterUser.call do |operation|
+  if operation.success?
+    puts 'Success!'
+  end
+end
+```
+
 ## Development
 
 Any kind of feedback, bug report or enhancement are really welcome!
