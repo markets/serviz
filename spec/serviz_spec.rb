@@ -28,4 +28,10 @@ RSpec.describe Serviz::Base do
     expect(operation.success?).to eq true
     expect(operation.result).to eq(['foo', 'bar'])
   end
+
+  it "accepts a block" do
+    expect {
+      RegisterUser.call { |operation| puts 'error!' if operation.failure? }
+    }.to output("error!\n").to_stdout
+  end
 end

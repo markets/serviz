@@ -14,6 +14,8 @@ module Serviz
                  end
       instance.call
 
+      yield(instance) if block_given?
+
       instance
     end
 
