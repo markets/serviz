@@ -30,8 +30,9 @@ Or install it yourself as:
 - Your class should implement a `#call` method
 - Return the _result_ via `self.result=`
 - Add _errors_ via `self.errors<<`
+- Check the status via the provided `#success?` or `#failure?` methods
 
-**Example:**
+### Example
 
 First, you should create a _Serviz_ class:
 
@@ -77,7 +78,9 @@ if operation.failure?
 end
 ```
 
-You may want to use the _block_ syntax:
+### Block syntax
+
+You may like to use the _block_ syntax:
 
 ```ruby
 RegisterUser.call(user) do |operation|
