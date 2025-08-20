@@ -2,15 +2,13 @@ RSpec.describe Serviz::Workflow do
   describe "basic workflow execution" do
     it "executes steps in sequence and returns the last result" do
       workflow = Class.new(Serviz::Workflow) do
+        step Step1, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg1) } }
+        step Step2, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg2) } }
+
         def initialize(arg1, arg2)
           super()
           @arg1 = arg1
           @arg2 = arg2
-        end
-
-        def call
-          run Step1, params: { some_flag: @arg1 }
-          run Step2, params: { some_flag: @arg2 }
         end
       end
 
@@ -22,10 +20,8 @@ RSpec.describe Serviz::Workflow do
 
     it "accumulates errors from failed steps" do
       workflow = Class.new(Serviz::Workflow) do
-        def call
-          run Step1, params: { some_flag: nil }  # This will fail
-          run Step2, params: { some_flag: "test" }
-        end
+        step Step1, params: { some_flag: nil }  # This will fail
+        step Step2, params: { some_flag: "test" }
       end
 
       result = workflow.call
@@ -38,10 +34,8 @@ RSpec.describe Serviz::Workflow do
   describe "conditional execution" do
     it "skips steps when condition is false" do
       workflow = Class.new(Serviz::Workflow) do
-        def call
-          run Step1, params: { some_flag: nil }  # This will fail
-          run Step2, params: { some_flag: "test" }, if: ->(result) { result.success? }
-        end
+        step Step1, params: { some_flag: nil }  # This will fail
+        step Step2, params: { some_flag: "test" }, if: ->(result) { result.success? }
       end
 
       result = workflow.call
@@ -53,10 +47,8 @@ RSpec.describe Serviz::Workflow do
 
     it "executes steps when condition is true" do
       workflow = Class.new(Serviz::Workflow) do
-        def call
-          run Step1, params: { some_flag: "test1" }  # This will succeed
-          run Step2, params: { some_flag: "test2" }, if: ->(result) { result.success? }
-        end
+        step Step1, params: { some_flag: "test1" }  # This will succeed
+        step Step2, params: { some_flag: "test2" }, if: ->(result) { result.success? }
       end
 
       result = workflow.call
@@ -69,15 +61,13 @@ RSpec.describe Serviz::Workflow do
   describe "example from issue description style" do
     it "works with the issue example pattern using initialize" do
       sample_workflow = Class.new(Serviz::Workflow) do
+        step Step1, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg1) } }
+        step Step2, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg2) } }, if: ->(result) { result.success? }
+
         def initialize(arg1, arg2)
           super()
           @arg1 = arg1
           @arg2 = arg2
-        end
-
-        def call
-          run Step1, params: { some_flag: @arg1 }
-          run Step2, params: { some_flag: @arg2 }, if: ->(result) { result.success? }
         end
       end
 
@@ -89,15 +79,13 @@ RSpec.describe Serviz::Workflow do
 
     it "handles failure case from example" do
       sample_workflow = Class.new(Serviz::Workflow) do
+        step Step1, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg1) } }
+        step Step2, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg2) } }, if: ->(result) { result.success? }
+
         def initialize(arg1, arg2)
           super()
           @arg1 = arg1
           @arg2 = arg2
-        end
-
-        def call
-          run Step1, params: { some_flag: @arg1 }
-          run Step2, params: { some_flag: @arg2 }, if: ->(result) { result.success? }
         end
       end
 
@@ -125,9 +113,7 @@ RSpec.describe Serviz::Workflow do
   describe "inheritance from Serviz::Base" do
     it "has the same interface as Serviz::Base" do
       workflow = Class.new(Serviz::Workflow) do
-        def call
-          run Step1, params: { some_flag: "test" }
-        end
+        step Step1, params: { some_flag: "test" }
       end
 
       result = workflow.call
@@ -143,9 +129,7 @@ RSpec.describe Serviz::Workflow do
 
     it "can be called with a block like other services" do
       workflow = Class.new(Serviz::Workflow) do
-        def call
-          run AlwaysFailStep
-        end
+        step AlwaysFailStep
       end
 
       expect {

@@ -63,14 +63,12 @@ end
 
 # Example workflow from the issue description
 class SampleWorkflow < Serviz::Workflow
+  step Step1, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg1) } }
+  step Step2, params: ->(instance) { { some_flag: instance.instance_variable_get(:@arg2) } }, if: ->(result) { result.success? }
+
   def initialize(arg1, arg2)
     super()
     @arg1 = arg1
     @arg2 = arg2
-  end
-
-  def call
-    run Step1, params: { some_flag: @arg1 }
-    run Step2, params: { some_flag: @arg2 }, if: ->(result) { result.success? }
   end
 end
