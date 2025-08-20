@@ -42,3 +42,5 @@ module Serviz
     alias_method :error?, :failure?
   end
 end
+
+require 'serviz/workflow'
