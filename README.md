@@ -88,6 +88,50 @@ RegisterUser.call(user) do |operation|
 end
 ```
 
+## Workflows
+
+`Serviz` also provides a `Workflow` class that allows you to compose multiple service objects together using a clean, declarative DSL for orchestrating complex multi-step operations.
+
+### Basic Workflow Usage
+
+```ruby
+class UserOnboarding < Serviz::Workflow
+  step RegisterUser
+  step SendWelcomeEmail, if: ->(last_step) { last_step.success? }
+  step LogOnboarding
+end
+
+# Usage
+operation = UserOnboarding.call(user_params)
+puts operation.success? # => true
+puts operation.result   # => result from LogOnboarding
+
+# Handles failures gracefully
+operation = UserOnboarding.call(invalid_params)
+puts operation.failure? # => true
+puts operation.errors   # => ["Registration failed"]
+```
+
+### Advanced Workflow Features
+
+- **Declarative step definition** using class-level `step` method declarations
+- **Conditional execution** using the `if:` option to control whether steps run based on previous results
+- **Error accumulation** from all failed steps in the workflow
+- **Result chaining** where the last successful step's result becomes the workflow result
+- **Full compatibility** with the existing Serviz interface (`success?`, `failure?`, `errors`, `result`)
+
+### Custom Parameters
+
+You can also pass custom parameters to individual steps:
+
+```ruby
+class OrderProcessing < Serviz::Workflow
+  step ValidateOrder
+  step ChargePayment, params: { gateway: 'stripe' }, if: ->(last_step) { last_step.success? }
+  step ShipOrder, if: ->(last_step) { last_step.success? }
+end
+```
+
 ## Development
 
 Any kind of feedback, bug report or enhancement are really welcome!
