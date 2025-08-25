@@ -98,13 +98,13 @@ end
 class UserOnboarding < Serviz::Workflow
   step RegisterUser
   step SendWelcomeEmail, if: ->(last_step) { last_step.success? }
-  step LogOnboardingService
+  step LogOnboarding
 end
 
 # Usage
 operation = UserOnboarding.call(user_params)
 puts operation.success? # => true
-puts operation.result   # => result from LogOnboardingService
+puts operation.result   # => result from LogOnboarding
 
 # Handles failures gracefully
 operation = UserOnboarding.call(invalid_params)
