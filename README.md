@@ -97,19 +97,19 @@ end
 ```ruby
 class UserOnboarding < Serviz::Workflow
   step RegisterUser
-  step SendWelcomeEmail, if: ->(result) { result.success? }
+  step SendWelcomeEmail, if: ->(last_step) { last_step.success? }
   step LogOnboardingService
 end
 
 # Usage
-result = UserOnboarding.call(user_params)
-puts result.success? # => true
-puts result.result   # => result from LogOnboardingService
+operation = UserOnboarding.call(user_params)
+puts operation.success? # => true
+puts operation.result   # => result from LogOnboardingService
 
 # Handles failures gracefully
-result = UserOnboarding.call(invalid_params)
-puts result.failure? # => true
-puts result.errors   # => ["Registration failed"]
+operation = UserOnboarding.call(invalid_params)
+puts operation.failure? # => true
+puts operation.errors   # => ["Registration failed"]
 ```
 
 ### Advanced Workflow Features
@@ -127,8 +127,8 @@ You can also pass custom parameters to individual steps:
 ```ruby
 class OrderProcessing < Serviz::Workflow
   step ValidateOrder
-  step ChargePayment, params: { gateway: 'stripe' }, if: ->(result) { result.success? }
-  step ShipOrder, if: ->(result) { result.success? }
+  step ChargePayment, params: { gateway: 'stripe' }, if: ->(last_step) { last_step.success? }
+  step ShipOrder, if: ->(last_step) { last_step.success? }
 end
 ```
 

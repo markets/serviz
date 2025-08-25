@@ -54,9 +54,3 @@ class Step2 < Serviz::Base
     end
   end
 end
-
-class AlwaysFailStep < Serviz::Base
-  def call
-    self.errors << 'Always fails'
-  end
-end
