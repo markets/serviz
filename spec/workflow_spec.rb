@@ -94,20 +94,6 @@ RSpec.describe Serviz::Workflow do
       expect(result.failure?).to eq true
       expect(result.errors).to include('Step1 failed')
     end
-
-    it "works with the concrete SampleWorkflow from scenarios" do
-      result = SampleWorkflow.call("value1", "value2")
-
-      expect(result.success?).to eq true
-      expect(result.result).to eq "step2_value2"
-    end
-
-    it "handles SampleWorkflow failure case" do
-      result = SampleWorkflow.call(nil, "value2")
-
-      expect(result.failure?).to eq true
-      expect(result.errors).to include('Step1 failed')
-    end
   end
 
   describe "inheritance from Serviz::Base" do

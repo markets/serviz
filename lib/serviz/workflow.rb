@@ -33,13 +33,7 @@ module Serviz
           result = step_config[:service_class].call(**step_params)
         else
           # Use workflow args/kwargs
-          result = if @args.length > 0 && @kwargs.length > 0
-                     step_config[:service_class].call(*@args, **@kwargs)
-                   elsif @kwargs.length > 0
-                     step_config[:service_class].call(**@kwargs)
-                   else
-                     step_config[:service_class].call(*@args)
-                   end
+          result = step_config[:service_class].call(*@args, **@kwargs)
         end
         
         # Accumulate errors if the service failed
