@@ -4,9 +4,11 @@
 [![Build Status](https://github.com/markets/serviz/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/markets/serviz/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/871bdafe6ca410b4b64a/maintainability)](https://codeclimate.com/github/markets/serviz/maintainability)
 
-> Minimalistic Service Class Interface for Ruby
+> Command object Interface for Ruby
 
 `Serviz` provides a minimal interface to unify and homogenize your *Service* or *Command* objects in your Ruby code.
+
+Looking for a JavaScript version? Check out 👉 [Serviz-JS](https://github.com/markets/serviz-js).
 
 ## Installation
 
@@ -112,9 +114,8 @@ puts operation.failure? # => true
 puts operation.errors   # => ["Registration failed"]
 ```
 
-### Advanced Workflow Features
+### Workflow Features
 
-- **Declarative step definition** using class-level `step` method declarations
 - **Conditional execution** using the `if:` option to control whether steps run based on previous results
 - **Error accumulation** from all failed steps in the workflow
 - **Result chaining** where the last successful step's result becomes the workflow result
